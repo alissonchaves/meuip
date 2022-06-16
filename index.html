@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MeuIP - UFU</title>
+
+<style>
+.main {
+	text-align: center;
+}
+.item {
+  padding:7px;
+  margin:7px;
+  border:1px solid #f1f1f1;
+  text-align:center;
+  display:inline-block;
+  width: 300px;
+  height: 109px;
+  vertical-align: middle;
+  background-color: #f2f2f2;
+}
+.titulo {
+	color: white;
+	background-color:#22b4fd;
+	padding:15px;
+	text-align:center;
+}
+.frame {
+	width: 100vw;
+	height: 100vw;
+}
+</style>
+
+<div class="titulo">
+    <h1>MeuIP - UFU</h1>
+</div>
+  <div class="main">
+    <div class="item"><h2>IPv4 Local: </h2><script type="text/javascript" src="https://meuip4.dr.ufu.br/myip/meuip.php"></script></div>
+	    <div class="item"><h2>IPv4 Publico: </h2><p id="ip4_pub">N&atilde;o encontrado</p></div>
+	    <div class="item"><h2>IPv6: </h2><p id="ip6_pub">N&atilde;o encontrado</p></div>
+    <div class="item"><h2>Navegador: </h2><script type="text/javascript" src="https://meuip.dr.ufu.br/myip/navegador.php"></script></div>
+    <div class="item"><h2>Sistema Operacional: </h2><script type="text/javascript" src="https://meuip.dr.ufu.br/myip/so.php"></script></div>
+	    <div class="item"><h2>Localiza&ccedil;&atilde;o: </h2><p id="local">N&atilde;o encontrado</p></div>
+	    <div class="item"><h2>Rede de origem: </h2><p id="operadora">N&atilde;o encontrado</p></div>
+</div>
+<!--OST Widget code start--><div style="text-align:right;"><div style="min-height:360px;"><div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;min-height:360px;border:none;overflow:hidden !important; scrolling=no" src="https://meuip.dr.ufu.br/Speed-Test/index.html"></iframe></div></div></div><!-- OST Widget code end -->
+
+	<script>
+			fetch("https://ip4.seeip.org/geoip")
+				.then(response => response.json())
+				.then(result => {
+					const ipv4=result;
+				document.getElementById("ip4_pub").innerHTML = ipv4.ip;
+				document.getElementById("local").innerHTML = ipv4.city + "-" + ipv4.region_code + ", " + ipv4.country
+				document.getElementById("operadora").innerHTML = ipv4.organization;
+				})
+			fetch("https://ip6.seeip.org/geoip")
+				.then(response => response.json())
+				.then(result => {
+					const ipv6=result;
+				document.getElementById("ip6_pub").innerHTML = ipv6.ip;
+				document.getElementById("local").innerHTML = ipv6.city + "-" + ipv6.region_code + ", " + ipv6.country
+				document.getElementById("operadora").innerHTML = ipv6.organization;
+				})
+	</script>
+</body>
+
+</html>
