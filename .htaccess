@@ -1,2 +1,9 @@
-Header add Access-Control-Allow-Origin "ip4.seeip.org*"
-Header add Access-Control-Allow-Origin "ip6.seeip.org*"
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
+    Header always set Access-Control-Allow-Headers "Content-Type"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://atnog-myip.av.it.pt; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api-ipv4.ip.sb https://api-ipv6.ip.sb; frame-src 'self'; object-src 'self'; base-uri 'self'; frame-ancestors 'self'"
+</IfModule>

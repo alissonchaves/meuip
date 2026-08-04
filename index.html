@@ -84,17 +84,17 @@
 			.then(response => response.json())
 			.then(result => {
 				const ipv4 = result;
-				document.getElementById("ip4_pub").innerHTML = ipv4.ip;
-				document.getElementById("local").innerHTML = ipv4.city + "-" + ipv4.region_code + ", " + ipv4.country
-				document.getElementById("operadora").innerHTML = ipv4.organization;
+				document.getElementById("ip4_pub").textContent = ipv4.ip;
+				document.getElementById("local").textContent = ipv4.city + "-" + ipv4.region_code + ", " + ipv4.country;
+				document.getElementById("operadora").textContent = ipv4.organization;
 			})
 		fetch("https://api-ipv6.ip.sb/geoip")
 			.then(response => response.json())
 			.then(result => {
 				const ipv6 = result;
-				document.getElementById("ip6_pub").innerHTML = ipv6.ip;
-				document.getElementById("local").innerHTML = ipv6.city + "-" + ipv6.region_code + ", " + ipv6.country
-				document.getElementById("operadora").innerHTML = ipv6.organization;
+				document.getElementById("ip6_pub").textContent = ipv6.ip;
+				document.getElementById("local").textContent = ipv6.city + "-" + ipv6.region_code + ", " + ipv6.country;
+				document.getElementById("operadora").textContent = ipv6.organization;
 			})
 	</script>
 </body>
