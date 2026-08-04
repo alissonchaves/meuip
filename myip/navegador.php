@@ -12,8 +12,8 @@ if (preg_match('/Edg(?:e|A|iOS)?\/[^\s]+/i', $useragent, $matches)) {
     $navegador = $matches[0];
 } elseif (preg_match('/(?:Chrome|CriOS)\/[^\s]+/i', $useragent, $matches)) {
     $navegador = $matches[0];
-} elseif (preg_match('/(?:Safari|Version)\/[^\s]+/i', $useragent, $matches) && strpos($useragent, 'Safari') !== false) {
-    $navegador = $matches[0];
+} elseif (strpos($useragent, 'Safari') !== false && preg_match('/Version\/([^\s]+)/i', $useragent, $matches)) {
+    $navegador = 'Safari/' . $matches[1];
 } elseif (preg_match('/SeaMonkey\/[^\s]+/i', $useragent, $matches)) {
     $navegador = $matches[0];
 }
