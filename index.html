@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>MyIP - Your</title>
+
+	<style>
+		.main {
+			text-align: center;
+		}
+
+		.item {
+			padding: 7px;
+			margin: 7px;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			text-align: center;
+			display: inline-block;
+			width: 300px;
+			height: 109px;
+			vertical-align: middle;
+			background-color: #f9f9f9;
+		}
+
+		.titulo {
+			color: white;
+			background-color: #22b4fd;
+			padding: 15px;
+			text-align: center;
+		}
+
+		.frame {
+			width: 100vw;
+			height: 100vw;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body { background-color: #181818; color: #e6edf3; }
+			.titulo { background-color: #181818; }
+			.item { border-color: #202020; background-color: #000000; }
+			.item h2, .item p { color: #e6edf3; }
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="titulo">
+		<h1>MyIP - example.com</h1>
+	</div>
+	<div class="main">
+		<div class="item">
+			<h2>Local IPv4: </h2>
+			<script type="text/javascript" src="https://example.com/myip/meuip.php"></script>
+		</div>
+		<div class="item">
+			<h2>Public IPv4: </h2>
+			<p id="ip4_pub">Not found</p>
+		</div>
+		<div class="item">
+			<h2>IPv6: </h2>
+			<p id="ip6_pub">Not found</p>
+		</div>
+		<div class="item">
+			<h2>Browser: </h2>
+			<script type="text/javascript" src="https://example.com/myip/navegador.php"></script>
+		</div>
+		<div class="item">
+			<h2>SO: </h2>
+			<script type="text/javascript" src="https://example.com/myip/so.php"></script>
+		</div>
+		<div class="item">
+			<h2>Localization: </h2>
+			<p id="local">Not found</p>
+		</div>
+		<div class="item">
+			<h2>Source Network: </h2>
+			<p id="operadora">Not found</p>
+		</div>
+	</div>
+	<!--OST Widget code start-->
+	<div style="text-align:right;">
+		<div style="min-height:360px;">
+			<div style="width:100%;height:0;padding-bottom:50%;position:relative;"><iframe
+					style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;min-height:360px;border:none;overflow:hidden !important;"
+					src="https://example.com/Speed-Test/index.html"></iframe></div>
+		</div>
+	</div><!-- OST Widget code end -->
+
+	<script>
+		fetch("https://api-ipv4.ip.sb/geoip")
+			.then(response => response.json())
+			.then(result => {
+				const ipv4 = result;
+				document.getElementById("ip4_pub").textContent = ipv4.ip;
+				document.getElementById("local").textContent = ipv4.city + "-" + ipv4.region_code + ", " + ipv4.country;
+				document.getElementById("operadora").textContent = ipv4.organization;
+			})
+		fetch("https://api-ipv6.ip.sb/geoip")
+			.then(response => response.json())
+			.then(result => {
+				const ipv6 = result;
+				document.getElementById("ip6_pub").textContent = ipv6.ip;
+				document.getElementById("local").textContent = ipv6.city + "-" + ipv6.region_code + ", " + ipv6.country;
+				document.getElementById("operadora").textContent = ipv6.organization;
+			})
+	</script>
+</body>
+
+</html>
